@@ -28,7 +28,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geo
     }
 
     function getRad(magnitude) {
-        return magnitude * 2;
+        return magnitude * 3;
 
     }
 
@@ -67,7 +67,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geo
                 mouseout: function (event) {
                     layer = event.target;
                     layer.setStyle({
-                        fillOpacity: 0.25
+                        fillOpacity: 0.3
                     });
                 },
             });
