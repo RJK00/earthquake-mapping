@@ -8,5 +8,4 @@ The USGS is interested in building a new set of tools that will allow them to vi
 
 
 
-![earthquake_viz](images/earthquake_viz.png)
-
+![(images/earthquake_viz.png)](https://github.com/rybread01/earthquake-mapping/blob/main/images/earthquake_viz.PNG)
