@@ -19,7 +19,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geo
         return {
             radius: getRad(feature.properties.mag),
             fillColor: getColor(feature.geometry.coordinates[2]),
-            opacity: 1,
+            opacity: 0.75,
             fillOpacity: 0.8,
             color: "black",
             stroke: true,
@@ -67,7 +67,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geo
                 mouseout: function (event) {
                     layer = event.target;
                     layer.setStyle({
-                        fillOpacity: 0.75
+                        fillOpacity: 0.25
                     });
                 },
             });
@@ -82,18 +82,22 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geo
 
 
 
-var legend = L.control({ position: "topright" });
-legend.onAdd = function () {
-    var div = L.DomUtil.create("div", "legend info"),
-        depth = [-10, 10, 30, 50, 70, 90];
+    var legend = L.control({
+        position: "bottomright"
+    });
+    legend.onAdd = function () {
+        var div = L.DomUtil.create("div", "legend info"),
+            depth = [-10, 10, 30, 50, 70, 90];
+        var colors = ["purple", "darkred", "darkorange", "gold", "greenyellow", "palegreen"]
+        
+        div.innerHTML += "<h4 style='text-align: center'>Depth</h4>"
 
-    div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
-    for (var i = 0; i < depth.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(depth[i] + 1) + '"></i> ' +
-            depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
-    }
-    return div;
-};
-legend.addTo(myMap);
+        for (var i = 0; i < depth.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(depth[i] + 1) + '"></i> ' +
+                depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
+        }
+        return div;
+    };
+    legend.addTo(map);
 });
